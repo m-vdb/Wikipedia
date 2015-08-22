@@ -404,7 +404,8 @@ class WikipediaPage(object):
     query_params.update(self.__title_query_param)
 
     last_continue = {}
-    prop = query_params.get('prop', None)
+    prop = query_params.get('prop')
+    list_param = query_params.get('list', 'pages')
 
     while True:
       params = query_params.copy()
@@ -415,13 +416,17 @@ class WikipediaPage(object):
       if 'query' not in request:
         break
 
-      pages = request['query']['pages']
+      pages = request['query'][list_param]
       if 'generator' in query_params:
         for datum in pages.values():  # in python 3.3+: "yield from pages.values()"
           yield datum
       else:
-        for datum in pages[self.pageid][prop]:
-          yield datum
+        if prop:
+          for datum in pages[self.pageid][prop]:
+            yield datum
+        else:
+          for datum in pages:
+            yield datum
 
       if 'continue' not in request:
         break
