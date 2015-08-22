@@ -681,6 +681,25 @@ class WikipediaPage(object):
     return self.content[index:next_index].lstrip("=").strip()
 
 
+class WikipediaCategory(WikipediaPage):
+  '''
+  Contains data from a Wikipedia Category page.
+  Provides a get_members method to retrieve the
+  category members.
+  '''
+
+  def __init__(self, title=None, *args, **kwargs):
+    if title and not title.startswith('Category:'):
+      title = u'Category: %s' % title
+    super(WikipediaCategory, self).__init__(title=title, *args, **kwargs)
+
+  def get_members(self, cmtype='page'):
+    return self._continued_query({
+        'list': 'categorymembers',
+        'cmtitle': self.title,
+        'cmtype': cmtype
+      })
+
 @cache
 def languages():
   '''

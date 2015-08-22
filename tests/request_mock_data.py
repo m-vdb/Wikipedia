@@ -129,6 +129,42 @@ mock_data = {
 
     (('gscoord', '40.67693|117.23193'), ('gslimit', 10), ('gsradius', 1000), ('list', 'geosearch'), ('titles', 'Test')):
     {'query': {'geosearch': []}},
+
+    ((u'inprop', u'url'), (u'ppprop', u'disambiguation'), (u'prop', u'info|pageprops'), (u'redirects', u''), (u'titles', u'Category: Games')):
+    {'query': {'pages': {'691316': {'lastrevid': 607768264, 'pageid': 691316, 'title': 'Category: Games', 'editurl': 'http://en.wikipedia.org/w/index.php?title=Category: Games&action=edit', 'counter': '', 'length': 85175, 'contentmodel': 'wikitext', 'pagelanguage': 'en', 'touched': '2014-05-14T17:10:49Z', 'ns': 0, 'fullurl': 'http://en.wikipedia.org/wiki/Category: Games'}}}},
+
+    ((u'cmtitle', u'Category: Games'), (u'cmtype', u'page'), (u'list', u'categorymembers'), (u'titles', u'Category: Games')):
+    {"query": {"categorymembers": [
+            {
+                "pageid": 18723138,
+                "ns": 0,
+                "title": "Game"
+            },
+            {
+                "pageid": 45673968,
+                "ns": 0,
+                "title": "Black Letter Game"
+            },
+            {
+                "pageid": 45717400,
+                "ns": 0,
+                "title": "Dokapon Ikari no Tekken"
+            },
+            {
+                "pageid": 45541225,
+                "ns": 0,
+                "title": "Games and learning"
+            },
+            {
+                "pageid": 47005294,
+                "ns": 0,
+                "title": "Pros Vs Heroes"
+            },
+            {
+                "pageid": 44952865,
+                "ns": 0,
+                "title": "Nemexia (game)"
+            }]}},
   },
 
   "data": {
