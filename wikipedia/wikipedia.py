@@ -397,7 +397,7 @@ class WikipediaPage(object):
       self.title = page['title']
       self.url = page['fullurl']
 
-  def __continued_query(self, query_params):
+  def _continued_query(self, query_params):
     '''
     Based on https://www.mediawiki.org/wiki/API:Query#Continuing_queries
     '''
@@ -541,7 +541,7 @@ class WikipediaPage(object):
     if not getattr(self, '_images', False):
       self._images = [
         page['imageinfo'][0]['url']
-        for page in self.__continued_query({
+        for page in self._continued_query({
           'generator': 'images',
           'gimlimit': 'max',
           'prop': 'imageinfo',
@@ -587,7 +587,7 @@ class WikipediaPage(object):
 
       self._references = [
         add_protocol(link['*'])
-        for link in self.__continued_query({
+        for link in self._continued_query({
           'prop': 'extlinks',
           'ellimit': 'max'
         })
@@ -606,7 +606,7 @@ class WikipediaPage(object):
     if not getattr(self, '_links', False):
       self._links = [
         link['title']
-        for link in self.__continued_query({
+        for link in self._continued_query({
           'prop': 'links',
           'plnamespace': 0,
           'pllimit': 'max'
@@ -624,7 +624,7 @@ class WikipediaPage(object):
     if not getattr(self, '_categories', False):
       self._categories = [re.sub(r'^Category:', '', x) for x in
         [link['title']
-        for link in self.__continued_query({
+        for link in self._continued_query({
           'prop': 'categories',
           'cllimit': 'max'
         })
